@@ -331,3 +331,20 @@ update_completions() {
 
     _project" > $PC_DIR/completions/_project
 }
+
+local_ips() {
+    local INTERFACES=$(ifconfig -lu)
+    local IPS=""
+
+    for PC_INTERFACE in $INTERFACES; do
+        [ "$PC_INTERFACE" != "lo0" ] || continue
+
+        local IP=$(ifconfig -v $PC_INTERFACE | grep -Eo 'inet (\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b) netmask' | awk '{print $2}')
+
+        [ ! -z "$IP" ] || continue
+
+        IPS="${IPS},${IP}"
+    done
+
+    echo ${IPS:1}
+}

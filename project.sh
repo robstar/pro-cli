@@ -159,6 +159,7 @@ fi
 . $PC_DIR/systems/laravel-cli.sh
 . $PC_DIR/systems/node-cli.sh
 . $PC_DIR/systems/django-cli.sh
+. $PC_DIR/systems/lazu-cli.sh
 
 
 # # # # # # # # # # # # # # # # # # # #
